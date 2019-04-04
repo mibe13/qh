@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>My Map Set Name (Google Maps Export from Global Mapper)</title>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+
+    var G = google.maps;
+    var map;
+    
+    var customMapType = new G.ImageMapType
+      (
+        {
+        getTileUrl: function(coord, zoom)
+          {
+          var normalizedCoord = getNormalizedCoord(coord, zoom);
+          if (!normalizedCoord) { return null; }
+          
+          if ( zoom == 11 && normalizedCoord.x >= 1625 && normalizedCoord.x <= 1626 && normalizedCoord.y >= 900 && normalizedCoord.y <= 902 )
+          {
+            return "file:///E://!-Hai//@_MapProject//@Export//hnMetro//Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 12 && normalizedCoord.x >= 3250 && normalizedCoord.x <= 3253 && normalizedCoord.y >= 1800 && normalizedCoord.y <= 1805 )
+          {
+            return "file:///E://!-Hai//@_MapProject//@Export//hnMetro//Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 13 && normalizedCoord.x >= 6500 && normalizedCoord.x <= 6507 && normalizedCoord.y >= 3601 && normalizedCoord.y <= 3610 )
+          {
+            return "file:///E://!-Hai//@_MapProject//@Export//hnMetro//Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 14 && normalizedCoord.x >= 13001 && normalizedCoord.x <= 13015 && normalizedCoord.y >= 7202 && normalizedCoord.y <= 7220 )
+          {
+            return "file:///E://!-Hai//@_MapProject//@Export//hnMetro//Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 15 && normalizedCoord.x >= 26002 && normalizedCoord.x <= 26030 && normalizedCoord.y >= 14405 && normalizedCoord.y <= 14440 )
+          {
+            return "file:///E://!-Hai//@_MapProject//@Export//hnMetro//Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 16 && normalizedCoord.x >= 52004 && normalizedCoord.x <= 52061 && normalizedCoord.y >= 28810 && normalizedCoord.y <= 28880 )
+          {
+            return "file:///E://!-Hai//@_MapProject//@Export//hnMetro//Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 17 && normalizedCoord.x >= 104008 && normalizedCoord.x <= 104123 && normalizedCoord.y >= 57620 && normalizedCoord.y <= 57760 )
+          {
+            return "file:///E://!-Hai//@_MapProject//@Export//hnMetro//Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 18 && normalizedCoord.x >= 208017 && normalizedCoord.x <= 208247 && normalizedCoord.y >= 115240 && normalizedCoord.y <= 115521 )
+          {
+            return "file:///E://!-Hai//@_MapProject//@Export//hnMetro//Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 19 && normalizedCoord.x >= 416035 && normalizedCoord.x <= 416494 && normalizedCoord.y >= 230481 && normalizedCoord.y <= 231043 )
+          {
+            return "file:///E://!-Hai//@_MapProject//@Export//hnMetro//Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          return null;
+        },
+
+        alt: "My Map Set Name",
+        tileSize: new G.Size(256, 256),
+        isPng: true,
+        maxZoom: 19,
+        minZoom: 11,
+        opacity: 1.00,
+        name: "My Map Set Name"
+      }
+    )
+
+    function getNormalizedCoord(coord, zoom)
+    {
+      var y = coord.y;
+      var x = coord.x;
+      
+      var tileRange = 1 << zoom;
+      
+      if (y < 0 || y >= tileRange) { return null; }
+      if (x < 0 || x >= tileRange)
+      {
+        x = (x % tileRange + tileRange) % tileRange;
+      }
+      
+      return { x: x, y: y };
+    }
+
+    function initialize()
+    {
+      var myLatlng = new G.LatLng(21.043288,105.820312);
+      var myOptions = {
+        center: myLatlng,
+        zoom: 11,
+        mapTypeId: G.MapTypeId.ROADMAP,
+        mapTypeControl: true,
+        overviewMapControl: false,
+        scaleControl: true,
+        streetViewControl: true,
+        panControl: true,
+        zoomControl: true,
+        zoomControlOptions: { style: google.maps.ZoomControlStyle.DEFAULT }
+      };
+      
+      map = new G.Map(document.getElementById("map_canvas"), myOptions);
+      map.overlayMapTypes.insertAt(0, customMapType);
+    }
+    </script>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width: 100%; height: 800px; margin: 0px 0px 0px 0px; float: middle;"></div>
+</body> </html>
