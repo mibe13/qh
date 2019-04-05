@@ -1,0 +1,7 @@
+"SELECT ID, LatLng, DetailChecked FROM muabannhadatdotcomdotvn2 WHERE DetailChecked is null and LatLng is not null LIMIT 200"
+
+SELECT count(*) FROM `muabannhadatdotcomdotvn2` WHERE `DetailChecked` is null  and `LatLng` is not null
+
+SELECT ID, LatLng, DetailChecked FROM muabannhadatdotcomdotvn2 WHERE DetailChecked is null and LatLng is not null LIMIT 200
+
+$sql = "UPDATE `muabannhadatdotcomdotvn2` SET `LatLng`= null WHERE `LatLng` = \'0;0\'";

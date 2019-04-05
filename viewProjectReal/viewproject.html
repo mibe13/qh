@@ -1,0 +1,299 @@
+
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>Ban do giao dich nha dat</title>
+    <style type="text/css">
+        html{height: 100%;}
+        body {
+            height: 100%;
+			width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .listview_image	{
+                width: 25%;
+                height: 50px;
+                float: left;
+                border-top: 1px solid #598857;
+        }		
+        .listview_text	{
+                width: 75%;
+                min-height: 50px;
+                float: left;
+                cursor: pointer; 
+                font-size:13px;
+                border-top: 1px solid #598857;
+        }
+        .hidden_text{
+                visibility:hidden;
+                display:none;
+        }
+<!--		.infoBox {
+                       width: 250px;
+                       min-height: 50px;
+                       float: left;
+                       margin: 5px;
+            padding: 1;
+                       margin-top: 100px;
+                       margin-bottom: 100px;
+                       margin-right: 150px;
+                       margin-left: 50px;
+               } -->
+		
+    </style>
+
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+	<script src="markerclusterer/markerclusterer.js"></script>
+	<script src="markerclusterer/style.js"></script>
+	<script src="js/ajax.js"></script>
+	<script src="js/inforwindow.js"></script>
+
+	<script type="text/javascript">
+		var map;			
+		var ipage = 0;
+		var idmin = 0;
+		var bound; // boundary of view
+		var markerClusterer;
+		var Markers = []; // array of Marker
+		var Markers4list = []; //array of marker with index user for list point
+		//var ipagemax;
+		//var totalitem;
+
+		$(document).ready(function() {
+			initialize();
+			doScreen();
+		});
+		
+		//google.maps.event.addDomListener(window, 'load', initialize());
+		//window.onload = initialize;
+	
+		function initialize() {
+			var myLatlng = new google.maps.LatLng(21.043288,  105.820312);
+			var options ={
+				zoom: 13,
+				center: myLatlng, //new google.maps.LatLng(37.09, -95.71),
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				mapTypeControl: true,
+				mapTypeControlOptions:{
+					style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+					poistion: google.maps.ControlPosition.TOP_RIGHT,
+					mapTypeIds: [google.maps.MapTypeId.ROADMAP, 
+								  google.maps.MapTypeId.TERRAIN, 
+								  google.maps.MapTypeId.SATELLITE]
+				},
+				draggable: true
+			};
+
+			map = new google.maps.Map(document.getElementById('map_canvas'), options);
+			google.maps.event.addListener(map, 'dragend', doScreen);
+			google.maps.event.addListener(map, 'zoom_changed', doScreen);			
+
+			google.maps.event.addListener(map, 'click', closeBubble);
+			//google.maps.event.addListener(map, 'bounds_changed', doScreen);
+
+			//Fisrt time Load Googlemap must have
+			//http://stackoverflow.com/questions/832692/how-to-check-if-google-maps-is-fully-loaded
+			google.maps.event.addListenerOnce(map, 'idle', doScreen);				
+			
+		}
+
+		function doScreen() {
+			//closeBubble();
+			//ipage = 1;
+			Bound2Label();
+			addmarker();
+
+			doMarkerClusterer();
+			window.setTimeout(function() {
+				//updateviewlist();
+			}, 5000);			
+
+			result = null; //reset html to null
+		}
+
+		function Bound2Label() {
+			if (map.getBounds()) {
+				bound = map.getBounds();
+			}
+
+			if (bound) {
+				var script = document.getElementById('Label1');
+				script.innerHTML = 'Center: ' + map.getCenter() + ' | Zoom:' + map.getZoom() + ' | Bound: ' + bound;
+			}
+		}
+
+		function updateviewlist() {
+			poin2list();
+			var text = '';
+			
+			text  = '<div class="listpoint">' +
+					'<div class="listview_image"></div>' +
+					'<div class="listview_text" onclick="openinforbox(this.parentNode.outerHTML)">';
+			pt2list = pt2list.replace(/<<1>>/gi, text);
+
+			text = '</div><div class="hidden_text">';
+			pt2list = pt2list.replace(/<<2>>/gi, text);
+			
+			text = '</div><div class="hidden_text">';
+			pt2list = pt2list.replace(/<<3>>/gi, text);
+			
+			text = '</div></div>'
+			pt2list = pt2list.replace(/<<4>>/gi, text);
+
+			var ele;
+			ele = document.getElementById('ListviewDetail');
+			ele.innerHTML = pt2list;
+		}
+                
+                function updateviewdetail(id){
+                    ajaxMarkerdetail(id);
+  
+                    var ele;
+                    ele = document.getElementById('ListviewDetail');
+                    ele.innerHTML = content;                   
+                }
+                
+		function setpage(a) {
+
+			if (a == true) {
+				if (ipage < ipagemax) {
+					ipage += 1;
+					updateviewlist();
+				}
+			} else {
+				if (ipage > 1) {
+					ipage -= 1;
+					updateviewlist();
+				}
+			}
+
+		}
+
+		function openinforbox(html){
+			var pat = /[0-9]+(?=<\/div><\/div>)/i;
+			var item = html.toString().match(pat);
+			infobox(Markers4list[item.toString()],item);
+		}
+	</script>
+	
+	<script>
+	//Marker & MarkerClusterer
+	
+		//Add marker into map
+		function addmarker() {
+
+			var bound = map.getBounds();
+			point2marker(bound);
+			
+			if (markerClusterer) {
+				markerClusterer.clearMarkers();
+			}
+			
+			DeleteAllMarkers();
+
+			var arr = [];
+			var arrCord = [];
+			var i;
+
+			arr = result.split("<br>");
+
+			//i = 0; i < arr.length; i++
+			for (i in arr) {
+				arrCord = arr[i].split(";");
+
+				var MarkerOption = {
+					position: new google.maps.LatLng(parseFloat(arrCord[1]), parseFloat(arrCord[2])),
+					//draggable: false,
+					title: arrCord[0].toString(),
+					icon: 'icon/Favourites.png',
+					//clickable: true,
+					//html: '' ,
+					//id: arrCord[0].toString(),                
+					map: map
+				};
+
+				var marker = new google.maps.Marker(MarkerOption);
+				google.maps.event.addListener(marker, 'click', function(event) {
+					//add inforBubble or inforwindow
+					//inforBubblev3(this, this.title);
+                                        updateviewdetail(this.title);
+				})
+				
+/* 				google.maps.event.addListener(marker, 'mouseover', function(event) {
+					//add inforBubble or inforwindow
+					infobox(this, this.title);
+				}) */
+
+				Markers.push(marker); // store markers	
+				
+				//push marker to array with key
+				//var obj = {};
+				//obj[arrCord[0].toString] = marker;
+				//Markers4list.push(obj);
+				Markers4list[arrCord[0]] = marker;
+				//marker = null;
+				idmin = arrCord[0];
+			} //end for
+
+			//ipagemax = Math.ceil(i / 25);
+			//totalitem = i.toString();
+
+		}
+		
+		function doMarkerClusterer() {
+
+			// add MarkerClusterer
+			var zoom = 17;
+			var size = 40;  
+			var style; //= parseInt(document.getElementById('style').value, 10);
+		     //zoom = zoom == -1 ? null : zoom;
+			//size = size == -1 ? null : size;
+			//style = style == -1 ? null : style; 
+
+			markerClusterer = new MarkerClusterer(map, Markers, {
+				maxZoom: zoom,
+				zoomOnClick: false,
+				gridSize: size,
+				styles: styles[style]
+			});
+
+		}
+		
+		function DeleteAllMarkers(){
+			if (Markers){
+				//for (i in Markers){
+				for (var i = 0; i < Markers.length; i++){
+					Markers[i].setMap(null);
+					google.maps.event.clearInstanceListeners(Markers[i]);
+					Markers[i] = null;
+				}
+				Markers.length = 0;
+			}
+		}	
+	
+	</script>
+	
+</head>
+
+<body>
+    <div style="width: 100%; height: 6%; background-color: #BDBDBD;">
+        <div style="width: 25%; height: 100%;">
+            <img src="logo/logo01.png" alt="Pulpit rock" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+
+    <div id="view1" style="width: 100%; height: 92%;">
+        <div id="Listview" class="Listview" style="width: 35%; height: 100%; float: left;">
+            <div id="ListviewDetail" style="Width: 100%; Height: 100%; overflow: auto;background: #BDBDBD;"></div>
+        </div>
+        <div id="Mapview" style="width: 65%; height: 100%; float: left;">
+            <div id="map_canvas" style="width: 100%; height: 100%;background: #fffff;"></div>
+            <div id="Label1" style="width: 100%; height: 2%; font-size:10px;background-color: #D8D8D8;"></div>
+        </div>
+    </div>
+</body>
+
+</html>

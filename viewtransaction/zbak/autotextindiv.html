@@ -1,0 +1,33 @@
+﻿<html>
+<head>
+<style type="text/css">
+    #dynamicDiv
+    {
+	background: #CCCCCC;
+	width: 300px;
+	height: 100px;
+	font-size: 64px;
+	overflow: hidden;
+    }
+</style>
+
+<script type="text/javascript">
+    function shrink()
+    {
+    	var textSpan = document.getElementById("dynamicSpan");
+    	var textDiv = document.getElementById("dynamicDiv");
+
+    	textSpan.style.fontSize = 64;
+
+    	while(textSpan.offsetHeight > textDiv.offsetHeight)
+    	{
+    		textSpan.style.fontSize = parseInt(textSpan.style.fontSize) - 1;
+    	}
+    }
+</script>
+
+</head>
+<body onload="shrink()">
+    <div id="dynamicDiv"><span id="dynamicSpan">DYNAMIC FONT</span></div>
+</body>
+</html>

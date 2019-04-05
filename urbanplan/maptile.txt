@@ -1,0 +1,5 @@
+<zoommin>11</zoommin>
+<zoommax>19</zoommax>
+<centerlat>21.043288</centerlat>
+<centerlng>105.820312</centerlng>
+<opacity>1</opacity>

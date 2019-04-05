@@ -1,0 +1,35 @@
+﻿<Qh Hanoi 2030-2050>
+	<hn203020050_01>path=..\\@urbanplan\\drawing\\hanoi\\2030to2050\\gt10k\\;zmax=19;zmin=11;cenlat=21.043288;cenlng=105.820312;</>
+	<hn203020050_02>path=..\\@urbanplan\\drawing\\hanoi\\2030to2050\\gt25k\\;zmax=18;zmin=10;cenlat=20.974904;cenlng=105.77774;</>
+	<hn203020050_03>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\generalplan\\;zmax=19;zmin=10;cenlat=20.995337537294855;cenlng=105.66186951196286;</>
+	<hn203020050_04>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\sdd10k\\;zmax=19;zmin=11;cenlat=21.043288;cenlng=105.820312;</>
+	<hn203020050_05>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\metro\\;zmax=18;zmin=11;cenlat=21.074807648170747;cenlng=105.8613400319824;</>
+	<hn203020050_06>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\metrofromcad\\;zmax=19;zmin=12;cenlat=21.074807648170747;cenlng=105.8613400319824;</>
+	<hn203020050_07>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\education\\;zmax=19;zmin=10;cenlat=20.995337537294855;cenlng=105.66186951196286;</>
+	<hn203020050_08>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\factory\\;zmax=19;zmin=10;cenlat=20.995337537294855;cenlng=105.66186951196286;</>
+	<hn203020050_09>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\health\\;zmax=19;zmin=10;cenlat=20.995337537294855;cenlng=105.66186951196286;</>
+	<hn203020050_10>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\resident\\;zmax=19;zmin=10;cenlat=20.995337537294855;cenlng=105.66186951196286;</>
+	
+	<hn203020050_11>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\roadincenter\\;zmax=16;zmin=12;cenlat=21.0358789992891;cenlng=105.82889603173825;</>
+	
+	<hn203020050_12>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\trade\\;zmax=19;zmin=10;cenlat=20.995337537294855;cenlng=105.66186951196286;</>
+	<hn203020050_13>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\2030to2050\\traffic\\;zmax=19;zmin=10;cenlat=20.995337537294855;cenlng=105.66186951196286;</>
+<Other>
+	<hno_01>path=..\\@urbanplan\\drawing\\hanoi\\other\\longbien2k\\;zmax=20;zmin=14;cenlat=21.043469;cenlng=105.908203;</>
+	<hno_02>path=..\\@urbanplan\\drawing\\hanoi\\other\\hoangmai2k\\;zmax=20;zmin=14;cenlat=20.97795;cenlng=105.846563;</>
+	<hno_03>path=..\\@urbanplan\\drawing\\hanoi\\other\\tayho5k\\;zmax=20;zmin=14;cenlat=21.060032;cenlng=105.819362;</>
+	<hno_04>path=..\\@urbanplan\\drawing\\hanoi\\other\\dongngac2k\\;zmax=20;zmin=14;cenlat=21.071286;cenlng=105.77842;</>
+	<hno_05>path=..\\@urbanplan\\drawing\\hanoi\\other\\tayhotay2k\\;zmax=20;zmin=14;cenlat=21.061274;cenlng=105.795408;</>				
+<Qh Hanoi 1998>
+	<hn98_01>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\1998\\badinh\\;zmax=19;zmin=15;cenlat=21.035258141051486;cenlng=105.82966850793454;</>
+	<hn98_02>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\1998\\dongda\\;zmax=19;zmin=15;cenlat=21.014548032646534;cenlng=105.82044170892331;</>
+	<hn98_03>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\1998\\haibatrung\\;zmax=19;zmin=15;cenlat=21.0001954821891;cenlng=105.85997746980283;</>
+	<hn98_04>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\1998\\hoankiem\\;zmax=19;zmin=15;cenlat=21.029530101071146;cenlng=105.85284279382321;</>
+	<hn98_05>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hanoi\\1998\\thanhxuan\\;zmax=19;zmin=15;cenlat=20.994235713369633;cenlng=105.8182959417114;</>
+<Qh TP HCM>
+	<hcm2030_01>path=..\\@urbanplan\\drawing\\hcm\\other\\gt10k\\;zmax=19;zmin=11;cenlat=10.745575940889525;cenlng=106.68941305673215;</>
+	<hcm2030_02>path=https://googledrive.com/host/0B1H7cpDK2tD-SUJOZEpLSE5xSkk\\drawing\\hcm\\other\\sdd10k\\;zmax=19;zmin=11;cenlat=10.745575940889525;cenlng=106.68941305673215;</>
+<Qh Danang>
+	<dna_01>path=..\\@urbanplan\\drawing\\danang\\other\\gt10k\\;zmax=19;zmin=13;cenlat=16.04207892649781;cenlng=108.19681452310178;</>
+<Qh Hue>
+	<hue_01>path=..\\@urbanplan\\drawing\\hue\\other\\gt10k\\;zmax=19;zmin=13;cenlat=16.463885918582537;cenlng=107.5835113385925;</>

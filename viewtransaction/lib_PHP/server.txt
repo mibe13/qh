@@ -1,0 +1,5 @@
+string cannot whitespace character
+$servername="localhost";
+$username="root";
+$password="";
+$database="transaction";
