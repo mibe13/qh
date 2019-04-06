@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>My Map Set Name (Google Maps Export from Global Mapper)</title>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+
+    var G = google.maps;
+    var map;
+    
+    var customMapType = new G.ImageMapType
+      (
+        {
+        getTileUrl: function(coord, zoom)
+          {
+          var normalizedCoord = getNormalizedCoord(coord, zoom);
+          if (!normalizedCoord) { return null; }
+          
+          if ( zoom == 11 && normalizedCoord.x >= 1629 && normalizedCoord.x <= 1632 && normalizedCoord.y >= 960 && normalizedCoord.y <= 964 )
+          {
+            return "map/hcm10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 12 && normalizedCoord.x >= 3258 && normalizedCoord.x <= 3265 && normalizedCoord.y >= 1920 && normalizedCoord.y <= 1929 )
+          {
+            return "map/hcm10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 13 && normalizedCoord.x >= 6516 && normalizedCoord.x <= 6531 && normalizedCoord.y >= 3840 && normalizedCoord.y <= 3858 )
+          {
+            return "map/hcm10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 14 && normalizedCoord.x >= 13032 && normalizedCoord.x <= 13062 && normalizedCoord.y >= 7680 && normalizedCoord.y <= 7717 )
+          {
+            return "map/hcm10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 15 && normalizedCoord.x >= 26064 && normalizedCoord.x <= 26125 && normalizedCoord.y >= 15361 && normalizedCoord.y <= 15435 )
+          {
+            return "map/hcm10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 16 && normalizedCoord.x >= 52129 && normalizedCoord.x <= 52251 && normalizedCoord.y >= 30723 && normalizedCoord.y <= 30870 )
+          {
+            return "map/hcm10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 17 && normalizedCoord.x >= 104259 && normalizedCoord.x <= 104503 && normalizedCoord.y >= 61446 && normalizedCoord.y <= 61741 )
+          {
+            return "map/hcm10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 18 && normalizedCoord.x >= 208518 && normalizedCoord.x <= 209007 && normalizedCoord.y >= 122893 && normalizedCoord.y <= 123482 )
+          {
+            return "map/hcm10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          return null;
+        },
+
+        alt: "My Map Set Name",
+        tileSize: new G.Size(256, 256),
+        isPng: true,
+        maxZoom: 18,
+        minZoom: 11,
+        opacity: 1.00,
+        name: "My Map Set Name"
+      }
+    )
+
+    function getNormalizedCoord(coord, zoom)
+    {
+      var y = coord.y;
+      var x = coord.x;
+      
+      var tileRange = 1 << zoom;
+      
+      if (y < 0 || y >= tileRange) { return null; }
+      if (x < 0 || x >= tileRange)
+      {
+        x = (x % tileRange + tileRange) % tileRange;
+      }
+      
+      return { x: x, y: y };
+    }
+
+    function initialize()
+    {
+      var myLatlng = new G.LatLng(10.746661,106.699219);
+      var myOptions = {
+        center: myLatlng,
+        zoom: 11,
+        mapTypeId: G.MapTypeId.ROADMAP,
+        mapTypeControl: true,
+        overviewMapControl: false,
+        scaleControl: true,
+        streetViewControl: true,
+        panControl: true,
+        zoomControl: true,
+        zoomControlOptions: { style: google.maps.ZoomControlStyle.DEFAULT }
+      };
+      
+      map = new G.Map(document.getElementById("map_canvas"), myOptions);
+      map.overlayMapTypes.insertAt(0, customMapType);
+    }
+    </script>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width: 100%; height: 800px; margin: 0px 0px 0px 0px; float: middle;"></div>
+</body> </html>
