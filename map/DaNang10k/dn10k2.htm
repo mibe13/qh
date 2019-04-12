@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<style type="text/css">
+		html{height: 96%;}
+		body{
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		}
+		#map_canvas	{height: 100%;}
+	</style>
+    <title>My Map Set Name (Google Maps Export from Global Mapper)</title>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+
+    var G = google.maps;
+    var map;
+    
+    var customMapType = new G.ImageMapType
+      (
+        {
+        getTileUrl: function(coord, zoom)
+          {
+          var normalizedCoord = getNormalizedCoord(coord, zoom);
+          if (!normalizedCoord) { return null; }
+          
+          if ( zoom == 11 && normalizedCoord.x >= 1638 && normalizedCoord.x <= 1640 && normalizedCoord.y >= 930 && normalizedCoord.y <= 932 )
+          {
+            return "/urbanplan/danang/DaNang10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 12 && normalizedCoord.x >= 3277 && normalizedCoord.x <= 3280 && normalizedCoord.y >= 1861 && normalizedCoord.y <= 1864 )
+          {
+            return "/urbanplan/danang/DaNang10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 13 && normalizedCoord.x >= 6555 && normalizedCoord.x <= 6560 && normalizedCoord.y >= 3723 && normalizedCoord.y <= 3728 )
+          {
+            return "/urbanplan/danang/DaNang10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 14 && normalizedCoord.x >= 13110 && normalizedCoord.x <= 13120 && normalizedCoord.y >= 7447 && normalizedCoord.y <= 7457 )
+          {
+            return "/urbanplan/danang/DaNang10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 15 && normalizedCoord.x >= 26221 && normalizedCoord.x <= 26240 && normalizedCoord.y >= 14894 && normalizedCoord.y <= 14914 )
+          {
+            return "/urbanplan/danang/DaNang10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 16 && normalizedCoord.x >= 52443 && normalizedCoord.x <= 52481 && normalizedCoord.y >= 29788 && normalizedCoord.y <= 29828 )
+          {
+            return "/urbanplan/danang/DaNang10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 17 && normalizedCoord.x >= 104887 && normalizedCoord.x <= 104962 && normalizedCoord.y >= 59576 && normalizedCoord.y <= 59656 )
+          {
+            return "/urbanplan/danang/DaNang10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 18 && normalizedCoord.x >= 209774 && normalizedCoord.x <= 209925 && normalizedCoord.y >= 119152 && normalizedCoord.y <= 119313 )
+          {
+            return "/urbanplan/danang/DaNang10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          else if ( zoom == 19 && normalizedCoord.x >= 419549 && normalizedCoord.x <= 419850 && normalizedCoord.y >= 238305 && normalizedCoord.y <= 238627 )
+          {
+            return "/urbanplan/danang/DaNang10k/Z" + zoom + "/" + normalizedCoord.y + "/" + normalizedCoord.x + ".png"; // replace that with a "real" URL
+          }
+          return null;
+        },
+
+        alt: "My Map Set Name",
+        tileSize: new G.Size(256, 256),
+        isPng: true,
+        maxZoom: 19,
+        minZoom: 11,
+        opacity: 1.00,
+        name: "My Map Set Name"
+      }
+    )
+
+    function getNormalizedCoord(coord, zoom)
+    {
+      var y = coord.y;
+      var x = coord.x;
+      
+      var tileRange = 1 << zoom;
+      
+      if (y < 0 || y >= tileRange) { return null; }
+      if (x < 0 || x >= tileRange)
+      {
+        x = (x % tileRange + tileRange) % tileRange;
+      }
+      
+      return { x: x, y: y };
+    }
+
+    function initialize()
+    {
+      var myLatlng = new G.LatLng(16.045652,108.193359);
+      var myOptions = {
+        center: myLatlng,
+        zoom: 12,
+        mapTypeId: G.MapTypeId.SATELLITE,
+        mapTypeControl: true,
+        overviewMapControl: false,
+        scaleControl: true,
+        streetViewControl: true,
+        panControl: true,
+        zoomControl: true,
+        zoomControlOptions: { style: google.maps.ZoomControlStyle.DEFAULT }
+      };
+      
+      map = new G.Map(document.getElementById("map_canvas"), myOptions);
+      map.overlayMapTypes.insertAt(0, customMapType);
+    }
+    </script>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width: 100%; height: 100%; margin: 0px 0px 0px 0px; float: middle;"></div>
+</body> </html>
